@@ -1,3 +1,13 @@
 <Solution>
+  <Folder Name="/External Dependencies/">
+    <Project Path="../photino.NET/Photino.NET/Photino.NET.csproj" />
+  </Folder>
+  <Folder Name="/UserInterface/">
+    <Project Path="MtgTools.Ui/MtgTools.Ui.njsproj">
+      <BuildType Project="release" />
+      <Build />
+    </Project>
+  </Folder>
   <Project Path="MtgTools.App/MtgTools.App.csproj" />
+  <Project Path="MtgTools.WebView/MtgTools.WebView.csproj" />
 </Solution>

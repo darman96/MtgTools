@@ -6,5 +6,40 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  
+  <PropertyGroup>
+    <!-- UI artifact paths -->
+    <UiDistRoot>$(MSBuildThisFileDirectory)..\MtgTools.Ui\dist</UiDistRoot>
+    <UiAppDist>$(UiDistRoot)\app</UiAppDist>
+    <UiStorybook>$(UiDistRoot)\storybook</UiStorybook>
+    <UiRootPath>$(MSBuildThisFileDirectory)..\MtgTools.Ui</UiRootPath>
+  </PropertyGroup>
+
+  <!-- Ensure dependencies are built before metadata resolution (IDE-friendly) -->
+  <Target Name="EnsureDependenciesBuilt" BeforeTargets="CoreCompile" Condition="'$(DesignTimeBuild)' != 'true'">
+    <MSBuild
+      Projects="@(ProjectReference)"
+      Targets="Build"
+      Properties="Configuration=$(Configuration);Platform=$(Platform);DesignTimeBuild=false"
+      StopOnFirstFailure="true" />
+  </Target>
+
+  <!-- For design-time builds (IDE intellisense), ensure refs are available -->
+  <Target Name="EnsureDependenciesBuiltDesignTime" BeforeTargets="ResolveAssemblyReferences" Condition="'$(DesignTimeBuild)' == 'true'">
+    <MSBuild
+      Projects="@(ProjectReference)"
+      Targets="Build"
+      Properties="Configuration=$(Configuration);Platform=$(Platform);DesignTimeBuild=false"
+      StopOnFirstFailure="false" />
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MtgTools.WebView\MtgTools.WebView.csproj" />
+    <ProjectReference Include="..\..\photino.NET\Photino.NET\Photino.NET.csproj" />
+  </ItemGroup>
 
 </Project>

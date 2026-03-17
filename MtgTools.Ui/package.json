@@ -1,0 +1,25 @@
+{
+  "name": "mtgtools.ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build:components && npm run build:app",
+    "build-storybook": "npm run build:app-storybook && npm run build:components-storybook",
+    "build:app": "npm run build --workspace @mtg-tools/app",
+    "build:app-storybook": "npm run build-storybook --workspace @mtg-tools/app",
+    "build:components": "npm run build --workspace @mtg-tools/components",
+    "build:components-storybook": "npm run build-storybook --workspace @mtg-tools/components",
+    "storybook": "npm run storybook --workspace @mtg-tools/app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "private": true,
+  "workspaces": [
+    "mtg-tools-app",
+    "mtg-tools-components"
+  ]
+}

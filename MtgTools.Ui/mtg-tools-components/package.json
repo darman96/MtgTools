@@ -1,0 +1,56 @@
+{
+	"name": "@mtg-tools/components",
+	"version": "0.0.1",
+	"private": true,
+	"type": "module",
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"storybook": "storybook dev -p 6006",
+		"build-storybook": "storybook build"
+	},
+	"peerDependencies": {
+		"preact": "^10.26.9"
+	},
+	"devDependencies": {
+		"@chakra-ui/react": "^3.34.0",
+		"@chromatic-com/storybook": "^5.0.1",
+		"@emotion/react": "^11.14.0",
+		"@preact/preset-vite": "^2.10.2",
+		"@storybook/addon-a11y": "^10.2.19",
+		"@storybook/addon-docs": "^10.2.19",
+		"@storybook/addon-vitest": "^10.2.19",
+		"@storybook/preact-vite": "^10.2.19",
+		"@types/node": "^25.5.0",
+		"@vitest/browser-playwright": "^4.1.0",
+		"@vitest/coverage-v8": "^4.1.0",
+		"eslint": "^9.39.4",
+		"eslint-config-preact": "^2.0.0",
+		"eslint-plugin-storybook": "^10.2.19",
+		"playwright": "^1.58.2",
+		"storybook": "^10.2.19",
+		"typescript": "^5.9.3",
+		"vite": "^7.0.4",
+		"vite-plugin-dts": "^4.5.4",
+		"vitest": "^4.1.0"
+	},
+	"eslintConfig": {
+		"extends": [
+			"preact",
+			"plugin:storybook/recommended"
+		]
+	}
+}
