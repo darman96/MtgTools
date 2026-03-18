@@ -1,0 +1,17 @@
+<Project>
+  <!-- Shared properties for all projects in this solution -->
+  
+  <PropertyGroup>
+    <!-- Common language and code settings -->
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    
+    <!-- Product metadata -->
+    <Product>MtgTools</Product>
+    <Authors>Erik</Authors>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+</Project>
+

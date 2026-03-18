@@ -9,28 +9,27 @@
   
   <PropertyGroup>
     <!-- UI artifact paths -->
-    <UiDistRoot>$(MSBuildThisFileDirectory)..\MtgTools.Ui\dist</UiDistRoot>
+    <UiDistRoot>$(MSBuildThisFileDirectory)..\MtgTools.Ui\.dist</UiDistRoot>
     <UiAppDist>$(UiDistRoot)\app</UiAppDist>
     <UiStorybook>$(UiDistRoot)\storybook</UiStorybook>
     <UiRootPath>$(MSBuildThisFileDirectory)..\MtgTools.Ui</UiRootPath>
   </PropertyGroup>
 
-  <!-- Ensure dependencies are built before metadata resolution (IDE-friendly) -->
-  <Target Name="EnsureDependenciesBuilt" BeforeTargets="CoreCompile" Condition="'$(DesignTimeBuild)' != 'true'">
-    <MSBuild
-      Projects="@(ProjectReference)"
-      Targets="Build"
-      Properties="Configuration=$(Configuration);Platform=$(Platform);DesignTimeBuild=false"
-      StopOnFirstFailure="true" />
+  <Target Name="CleanUiAssets" BeforeTargets="CopyUiAssets">
+    <Message Text="Cleaning UI assets from output directory..." Importance="high" />
+    <RemoveDir Directories="$(OutputPath)wwwroot" />
+    <Message Text="UI assets clean completed" Importance="high" />
   </Target>
-
-  <!-- For design-time builds (IDE intellisense), ensure refs are available -->
-  <Target Name="EnsureDependenciesBuiltDesignTime" BeforeTargets="ResolveAssemblyReferences" Condition="'$(DesignTimeBuild)' == 'true'">
-    <MSBuild
-      Projects="@(ProjectReference)"
-      Targets="Build"
-      Properties="Configuration=$(Configuration);Platform=$(Platform);DesignTimeBuild=false"
-      StopOnFirstFailure="false" />
+  
+  <Target Name="CopyUiAssets" BeforeTargets="Build">
+    <Message Text="Copying UI assets to output directory..." Importance="high" />
+    <ItemGroup>
+      <AppAssets Include="$(UiAppDist)\**\*" />
+      <StorybookAssets Include="$(UiStorybook)\**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(AppAssets)" DestinationFolder="$(OutputPath)wwwroot/app/%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(StorybookAssets)" DestinationFolder="$(OutputPath)wwwroot/storybook/%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Message Text="UI assets copy completed" Importance="high" />
   </Target>
 
   <ItemGroup>
@@ -38,6 +37,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\ScryfallClient\ScryfallClient\ScryfallClient.Extensions.DependencyInjection\ScryfallClient.Extensions.DependencyInjection.csproj" />
+    <ProjectReference Include="..\..\ScryfallClient\ScryfallClient\ScryfallClient\ScryfallClient.csproj" />
+    <ProjectReference Include="..\MtgTools.Ui\MtgTools.Ui.csproj" />
     <ProjectReference Include="..\MtgTools.WebView\MtgTools.WebView.csproj" />
     <ProjectReference Include="..\..\photino.NET\Photino.NET\Photino.NET.csproj" />
   </ItemGroup>

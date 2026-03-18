@@ -1,12 +1,11 @@
 <Solution>
   <Folder Name="/External Dependencies/">
     <Project Path="../photino.NET/Photino.NET/Photino.NET.csproj" />
+    <Project Path="../ScryfallClient/ScryfallClient/ScryfallClient.Extensions.DependencyInjection/ScryfallClient.Extensions.DependencyInjection.csproj" />
+    <Project Path="../ScryfallClient/ScryfallClient/ScryfallClient/ScryfallClient.csproj" />
   </Folder>
   <Folder Name="/UserInterface/">
-    <Project Path="MtgTools.Ui/MtgTools.Ui.njsproj">
-      <BuildType Project="release" />
-      <Build />
-    </Project>
+    <Project Path="MtgTools.Ui/MtgTools.Ui.csproj" />
   </Folder>
   <Project Path="MtgTools.App/MtgTools.App.csproj" />
   <Project Path="MtgTools.WebView/MtgTools.WebView.csproj" />

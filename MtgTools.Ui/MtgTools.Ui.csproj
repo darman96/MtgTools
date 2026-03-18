@@ -1,0 +1,27 @@
+<Project>
+  <PropertyGroup>
+    <OutputType>None</OutputType>
+    <OutputPath>dist/</OutputPath>
+  </PropertyGroup>
+  
+  <Target Name="Build" BeforeTargets="CoreCompile">
+    <Message Text="Building UI frontend..." Importance="high" />
+    <Exec Command="npm run build" ContinueOnError="false" />
+    <Message Text="UI frontend build completed" Importance="high" />
+  </Target>
+
+  <ItemGroup>
+    <Content Include="**/*.html" />
+    <Content Include="**/*.css" />
+    <Content Include="**/*.json" />
+    <Content Include="**/*.ts" />
+    <Content Include="**/*.js" />
+    <Content Include="**/*.tsx" />
+    <Content Include="**/*.jsx" />
+    <Content Include="**/*.md" />
+    <Content Include=".gitignore" />
+    <Content Include=".prettierrc" />
+    <Content Remove="node_modules/**" />
+    <Content Remove="obj/**" />
+  </ItemGroup>
+</Project>

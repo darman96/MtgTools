@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using MtgTools.App.Handlers;
 using MtgTools.WebView.Extensions;
+using ScryfallClient.Extensions.DependencyInjection;
 
 const string DefaultContentRoot = "wwwroot";
 const string UseStorybookModeConfigKey = "Startup:UseStorybook";
@@ -38,6 +39,8 @@ builder.Services
         options.Browser.UserAgent = "Mtg Tools WebView";
     })
     .AddWebMessageHandler<EchoHandler, EchoRequest, EchoResponse>("echo");
+
+builder.Services.UseScryfallClient();
 
 var host = builder.Build();
 await host.RunWebViewAsync();
