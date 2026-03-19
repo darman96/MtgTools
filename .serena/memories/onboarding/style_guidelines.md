@@ -1,0 +1,6 @@
+# Style & conventions
+- C# in `MtgTools.App` follows the default SDK-style pattern: keep types/methods `PascalCase`, locals `camelCase`, rely on global/implicit usings, and keep the `Program.cs` host minimal (builder configuration, services setup, `host.RunWebViewAsync`).
+- Front-end TypeScript uses `jsx: react-jsx` with `preact/compat` shims, so write React-style components with typed props, prefer `const` over `let`, keep hooks order stable, and avoid unused symbols per `eslint-config-preact`.
+- Chakra UI components can be introduced via the installed `@chakra-ui/react` + `@emotion/react` stack; keep styles localized to components until a broader styling system arrives.
+- Storybook stories live under `src/stories` (often nested by framework/tooling) and should mirror actual UI components while using clearly typed `args` objects.
+- Keep utility scripts, assets, and Storybook builds organized so that `MtgTools.App` can serve them directly from `wwwroot/app` and `wwwroot/storybook` without runtime paths needing special handling.
