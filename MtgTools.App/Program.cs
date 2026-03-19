@@ -3,6 +3,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using MtgTools.App.Handlers;
+using MtgTools.App.Services.Scryfall;
+using MtgTools.Data.Extensions;
 using MtgTools.WebView.Extensions;
 using ScryfallClient.Extensions.DependencyInjection;
 
@@ -26,6 +28,12 @@ builder.Configuration
     })
     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
+var dataDirectory = Path.Combine(AppContext.BaseDirectory, "Data");
+Directory.CreateDirectory(dataDirectory);
+
+var defaultConnectionString = $"Data Source={Path.Combine(dataDirectory, "mtgtools.db")}";
+var connectionString = builder.Configuration.GetConnectionString("MtgTools") ?? defaultConnectionString;
+
 var useStorybookMode = builder.Configuration.GetValue<bool>(UseStorybookModeConfigKey);
 var contentRoot = useStorybookMode ? storybookContentRoot : appContentRoot;
 builder.Services
@@ -42,6 +50,8 @@ builder.Services
     .AddWebMessageHandler<SearchCardHandler, SearchCardRequest, SearchCardResponse>("search.card");
 
 builder.Services.UseScryfallClient();
+builder.Services.AddMtgToolsData(connectionString);
+builder.Services.AddScryfallModelConverters();
 
 var host = builder.Build();
 await host.RunWebViewAsync();

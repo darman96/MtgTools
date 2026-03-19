@@ -37,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MtgTools.Data\MtgTools.Data.csproj" />
     <ProjectReference Include="..\..\ScryfallClient\ScryfallClient\ScryfallClient.Extensions.DependencyInjection\ScryfallClient.Extensions.DependencyInjection.csproj" />
     <ProjectReference Include="..\..\ScryfallClient\ScryfallClient\ScryfallClient\ScryfallClient.csproj" />
     <ProjectReference Include="..\MtgTools.Ui\MtgTools.Ui.csproj" />

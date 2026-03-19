@@ -8,5 +8,6 @@
     <Project Path="MtgTools.Ui/MtgTools.Ui.csproj" />
   </Folder>
   <Project Path="MtgTools.App/MtgTools.App.csproj" />
+  <Project Path="MtgTools.Data/MtgTools.Data.csproj" />
   <Project Path="MtgTools.WebView/MtgTools.WebView.csproj" />
 </Solution>
