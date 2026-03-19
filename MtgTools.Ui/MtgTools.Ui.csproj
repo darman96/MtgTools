@@ -19,9 +19,14 @@
     <Content Include="**/*.tsx" />
     <Content Include="**/*.jsx" />
     <Content Include="**/*.md" />
+    <Content Include="public/**" />
     <Content Include=".gitignore" />
     <Content Include=".prettierrc" />
     <Content Remove="node_modules/**" />
     <Content Remove="obj/**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="public\" />
   </ItemGroup>
 </Project>

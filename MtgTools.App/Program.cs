@@ -38,7 +38,8 @@ builder.Services
         options.Window.Height = 600;
         options.Browser.UserAgent = "Mtg Tools WebView";
     })
-    .AddWebMessageHandler<EchoHandler, EchoRequest, EchoResponse>("echo");
+    .AddWebMessageHandler<EchoHandler, EchoRequest, EchoResponse>("echo")
+    .AddWebMessageHandler<SearchCardHandler, SearchCardRequest, SearchCardResponse>("search.card");
 
 builder.Services.UseScryfallClient();
 

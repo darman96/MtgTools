@@ -24,3 +24,15 @@ export function App() {
 }
 
 render(<App />, document.getElementById("app"));
+
+// Initialize Photino web message bridge for the frontend
+try {
+  // Dynamic import so SSR/build tools which don't have `window` don't fail
+  if (typeof window !== "undefined") {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    import("./photino").then((m) => m.initWebMessage()).catch((e) => console.warn("photino init failed", e));
+  }
+} catch (err) {
+  // ignore
+}
+
