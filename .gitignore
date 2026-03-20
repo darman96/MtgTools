@@ -6,3 +6,5 @@ riderModule.iml
 /MtgTools.Ui/dist/
 
 .idea/
+
+MtgTools.Data/.ef_design/
